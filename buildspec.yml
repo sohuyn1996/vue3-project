@@ -1,0 +1,20 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20
+    commands:
+      - corepack enable
+      - yarn install
+  build:
+    commands:
+      - yarn build
+  post_build:
+    commands:
+      - aws s3 sync dist/ s3://vue3-project --delete
+
+artifacts:
+  files:
+    - '**/*'
+  base-directory: dist
