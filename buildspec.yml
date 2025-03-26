@@ -13,6 +13,7 @@ phases:
   post_build:
     commands:
       - aws s3 sync dist/ s3://vue3-project --delete
+      - aws cloudfront create-invalidation --distribution-id E2XT4HPAN6JENE --paths "/*"
 
 artifacts:
   files:
